@@ -63,4 +63,5 @@ $ flask run
 
 
 ## <p align="center">Use case diagram</p>
-<p align="center"><img src="https://github.com/belekomurzakov/brigadier-agency/blob/master/static/images/UseCase.png" alt="ER" width="600"/></p>
+<p align="center"><img src="https://github.com/bogdanvyzhlov/recycling-company/blob/main/static/img/UseCase1.png" alt="ER" width="600"/></p>
+<p align="center"><img src="https://github.com/bogdanvyzhlov/recycling-company/blob/main/static/img/UseCase2.png" alt="ER" width="600"/></p>
