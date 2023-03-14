@@ -59,7 +59,7 @@ $ flask run
 ```
 
 ## <p align="center">Entity–relationship model</p>
-<p align="center"><img src="https://github.com/belekomurzakov/brigadier-agency/blob/master/static/images/ER.png" alt="ER" width="600"/></p>
+<p align="center"><img src="https://github.com/bogdanvyzhlov/recycling-company/blob/main/static/img/ERD.png" alt="ER" width="600"/></p>
 
 
 ## <p align="center">Use case diagram</p>
