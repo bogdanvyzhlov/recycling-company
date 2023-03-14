@@ -1,0 +1,35 @@
+{% extends 'main.html' %}
+{% from 'macros/form_field.html' import render_field with context %}
+
+{% block content %}
+
+<section class="flex-center">
+  <h1>Register collection</h1>
+  <div class="side-by-side">
+  <form method="POST">
+    <div class="container">
+      <div class="card">
+    <p>
+    {{ render_field(form.email) }}
+    <select style="width:200px" name="materials_id" required="required">
+      <option value="" >Choose material</option>
+      {% for material in materials %}
+      <option value="{{ material.id }}" >{{ material.name }}</option>
+      {% endfor %}
+    </select>
+    {{ render_field(form.weight) }}
+    </p>
+      </div>
+      <div class="card">
+    <p>
+    {{ render_field(form.description, rows=10, cols=60, style='resize:none') }}
+    </p>
+      </div>
+      </div>
+    <div class="flex-center">
+    <input type="submit" class="w-100" style="width:300px" value="Register">
+    </div>
+  </form>
+  </div>
+</section>
+{% endblock %}

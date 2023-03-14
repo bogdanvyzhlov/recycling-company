@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<section class="flex-center">
+  <h1>Current Prices</h1>
+
+  <div class="responsive-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Material</th>
+          <th>Price</th>
+          <th class="column-right-align">Last Updated</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for material in prices %}
+        <tr>
+          <td>{{ material.name }}</td>
+          <td>{{ "%.2f"|format(material.price) }} Kč</td>
+          <td class="column-right-align" title="{{ material.added }}" data-dateformatter="true">{{ material.added }}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</section>
+{% endblock %}

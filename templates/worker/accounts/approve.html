@@ -1,0 +1,76 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<section class="flex-center">
+  <h1>Approve users</h1>
+
+  <div class="search-bar">
+    <small><label for="search">Find account</label></small>
+    <input type="text" name="search" id="search" placeholder="Name or Email">
+  </div>
+
+  <div class="responsive-table">
+    <table>
+      <thead>
+        <tr>
+          <th>Account</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th class="column-right-align">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for account in users %}
+        <tr data-accountid="{{ account.id }}">
+          <td class="multiline" title="{{ account.registration }}">
+            <span>{{ account.firstname }} {{ account.lastname }}</span>
+            <small>{{ account.email }}</small>
+          </td>
+          <td>
+            <span>{{ account.title }}</span>
+          </td>
+
+          <td data-state="{{ account.activated }}" class="boolean-state" {% if account.activated %}
+            title="{{ account.activation }}" {% endif %}>{{ account.state }}</td>
+
+          <td class="column-right-align">
+            {% if account.id != current_user_id %}
+            {% if not account.activated %}
+            <a class="btn-action success" href="{{ url_for('worker.users.activate_account', user_id=account.id) }}">
+              Approve
+            </a>
+            {% endif %}
+            <a class="btn-action danger" href="{{ url_for('worker.users.delete_account', user_id=account.id) }}">
+              Delete
+            </a>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<script>
+  const search = document.querySelector('#search');
+  const table = document.querySelector('table');
+  const tableRows = table.querySelectorAll('tbody tr');
+
+  search.addEventListener('input', (e) => {
+    const searchValue = e.target.value.toLowerCase();
+
+    tableRows.forEach((row) => {
+      const account = row.querySelector('td:first-child').innerText.toLowerCase();
+      const email = row.querySelector('td:first-child small').innerText.toLowerCase();
+
+      if (email.includes(searchValue) || account.includes(searchValue)) {
+        row.style.display = 'table-row';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  });
+</script>
+{% endblock %}

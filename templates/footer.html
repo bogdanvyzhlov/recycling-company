@@ -1,0 +1,56 @@
+<footer>
+
+    <div>
+      <h3>Fast links</h3>
+   <ul>
+   <li> <a href="{{url_for('homepage.index')}}">Home</a></li>
+  <li>   <a href="{{url_for('view_all_stats')}}">Statistics</a></li>
+   <li>  <a href="{{url_for('view_current_prices')}}"> Prices</a></li>
+ <li> <a href="{{url_for('view_about_us')}}">About Us</a></li>
+
+    {% if session['authenticated'] %}
+        {% if session['role'] == 'default' %}
+        <li>  <a href="{{url_for('account.history')}}">History</a>
+        {% endif %}
+   <li>  <a href="{{url_for('account.account')}}">Account</a></li>
+    {% if session['role'] == 'admin'  %}
+
+            <li>  <a href="{{url_for('worker.users.manage_accounts')}}">Approve Accounts</a></li>
+            <li>  <a href="{{url_for('worker.collections.new_collection')}}">Register collection</a></li>
+        <li>  <a href="{{url_for('worker.collections.update_collections')}}">All collections</a></li>
+        <li>  <a href="{{url_for('admin.materials.update_prices')}}">Update Price</a></li>
+        <li>  <a href="{{url_for('admin.accounts.manage_accounts')}}">Manage Accounts</a></li>
+
+    {% endif %}
+    {% if session['role'] == 'limited_admin'%}
+
+        <li>  <a href="{{url_for('admin.materials.update_prices')}}">Update Price</a></li>
+        <li>  <a href="{{url_for('admin.accounts.manage_accounts')}}">Manage Accounts</a></li>
+
+    {% endif %}
+        {% if session['role'] == 'employee'  %}
+
+        <li>  <a href="{{url_for('worker.users.manage_accounts')}}">Approve Accounts</a></li>
+        <li>  <a href="{{url_for('worker.collections.new_collection')}}">Register collections</a></li>
+        <li>  <a href="{{url_for('worker.collections.update_collections')}}">All collections</a></li>
+
+        {% endif %}
+
+   <li>  <a href="{{url_for('auth.signout')}}">Logout</a></li>
+
+    {% else %}
+   <li>  <a href="{{url_for('auth.sign_in')}}">Sign in</a></li>
+    {% endif %}
+    </ul>
+    </div>
+
+    <div>
+      <h3>Contact Info</h3>
+        <address>
+          PEF MENDELU<br>
+          Zemědělská 1 <br>
+          Brno, 613 00
+        </address>
+    </div>
+
+</footer>

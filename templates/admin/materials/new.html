@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+{% from 'macros/form_field.html' import render_field with context %}
+
+{% block content %}
+
+<section class="flex-center">
+  <h1>Add new Material</h1>
+
+  <form method="POST">
+    {{ render_field(form.name) }}
+    {{ render_field(form.price) }}
+    <input type="submit" class="w-100" value="Add Material">
+  </form>
+
+
+  <p>return to <a href="{{ url_for('admin.materials.update_prices') }}">Materials Manager</a> page</p>
+</section>
+{% endblock %}

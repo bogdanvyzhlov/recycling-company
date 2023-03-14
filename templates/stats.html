@@ -1,0 +1,75 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<section class="flex-center">
+  <h1>Statistics</h1>
+
+  <div class="responsive-table only-mobile">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          {% for record in stats %}
+          <th>{{ record.name }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+
+      <tbody class="stacked-column-left">
+        <tr>
+          <td>Total Weight</td>
+          {% for record in stats %}
+          <td>{{ "%.2f"|format(record.total_received) }} kg</td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <td>Total Received</td>
+          {% for record in stats %}
+          <td>{{ record.total_received_count }}x</td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <td>Average Received Weight</td>
+          {% for record in stats %}
+          <td>{{ "%.2f"|format(record.average_weight) }} kg</td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <td>Last Received</td>
+          {% for record in stats %}
+          <td title="{{ record.latest_received }}" data-dateformatter="true">{{ record.latest_received }}</td>
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="responsive-table only-desktop">
+    <table>
+      <thead>
+        <tr>
+          <th>Material</th>
+          <th>Total Weight</th>
+          <th>Total Received</th>
+          <th>Average Received Weight</th>
+          <th class="column-right-align">Last Received</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {% for record in stats %}
+        <tr>
+          <td>{{ record.name }}</td>
+          <td>{{ "%.2f"|format(record.total_received) }} kg</td>
+          <td>{{ record.total_received_count }}x</td>
+          <td>{{ "%.2f"|format(record.average_weight) }} kg</td>
+          <td class="column-right-align" title="{{ record.latest_received }}" data-dateformatter="true">{{
+            record.latest_received }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</section>
+{% endblock %}

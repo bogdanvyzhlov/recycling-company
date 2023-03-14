@@ -1,0 +1,105 @@
+{% extends 'main.html' %}
+{% from 'macros/form_field.html' import render_field with context %}
+
+
+{% block content %}
+<br>
+<h1 > About me </h1>
+<br>
+<div class="tools">
+<div >
+
+
+    <h3>Name: </h3>
+    <p>{{ user['firstname'] }}</p>
+    <h3>Surname: </h3>
+    <p>{{ user['lastname'] }}</p>
+<h3>Email:</h3>
+<p> {{ user['email'] }}</p>
+<h3>Phone: </h3>
+<p>{{ user['phone'] }}</p>
+</div>
+<div >
+       <h3>Address of permanent:</h3>
+ {% if addresses_main  %}
+
+   {% for address in addresses_main %}
+
+    <p>{{ address['street'] }}</p>
+    <p>{{ address['city'] }}</p>
+    <p>{{ address['postalcode'] }}</p>
+    {% endfor %}
+    {% else %}
+
+
+    <p> None </p>
+    <p>None </p>
+    <p>None </p>
+
+    {% endif %}
+
+</div>
+ <div >
+
+<h3>Address of temporary:</h3>
+   {% if addresses %}
+
+{% for address in addresses %}
+
+    <p>{{ address['street'] }}</p>
+    <p>{{ address['city'] }}</p>
+    <p>{{ address['postalcode'] }}</p>
+     {% endfor %}
+    {% else %}
+
+    <p>None</p>
+    <p>None</p>
+    <p>None</p>
+
+
+    {% endif %}
+ </div>
+
+</div>
+<br>
+<h1 > Update information</h1>
+<section class="flex-center">
+ <div class="side-by-side">
+    <form method="POST">
+
+       <div class="container">
+         <div class="card">
+         <p>
+          {{ render_field(form.email) }}
+             {{ render_field(form.phone) }}
+          {{ render_field(form.password) }}
+          {{ render_field(form.password_repeat) }}
+
+          </p>
+         </div>
+           <div class="card">
+           <p>
+          {{ render_field(form.street_main) }}
+          {{ render_field(form.city_main) }}
+          {{ render_field(form.postalcode_main) }}
+               <br>
+               <br>
+               <br>
+          <input type="submit" class="w-100"  value="Update">
+           </p>
+           </div>
+           <div class="card">
+           <p>
+           {{ render_field(form.street) }}
+           {{ render_field(form.city) }}
+           {{ render_field(form.postalcode) }}
+           </p>
+           </div>
+
+
+     </div>
+    </form>
+ </div>
+
+</section>
+{% endblock %}

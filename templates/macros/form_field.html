@@ -1,0 +1,14 @@
+<!-- Form render helper -->
+{% macro render_field(field) %}
+<dt>{{ field.label }}</dt>
+<dd>{{ field(**kwargs)|safe }}
+
+  {% if field.errors %}
+  <div class="validator-warning">
+    {% for error in field.errors %}
+    <span>{{ error }}</span>
+    {% endfor %}
+  </div>
+  {% endif %}
+</dd>
+{% endmacro %}

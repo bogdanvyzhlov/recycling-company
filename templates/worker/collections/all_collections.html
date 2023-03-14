@@ -1,0 +1,75 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<section class="flex-center">
+  <h1>All collections</h1>
+
+  <div class="responsive-table only-mobile">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          {% for collection in collections %}
+          <th>{{ collection.id_col }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+
+      <tbody class="stacked-column-left">
+        <tr>
+          <td>User</td>
+          {% for collection in collections %}
+          <td>{{ collection.email }}</td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <td>Material</td>
+          {% for collection in collections %}
+          <td>{{ collection.material }}</td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <td>Weight</td>
+          {% for collection in collections %}
+          <td>{{ "%.2f"|format(collection.weight) }} kg</td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <td>Received</td>
+          {% for collection in collections %}
+          <td title="{{ collection.received }}" data-dateformatter="true">{{ collection.received }}</td>
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="big-table only-desktop">
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>User</th>
+          <th>Material</th>
+          <th>Weight</th>
+          <th>Received</th>
+          <th >Description</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        {% for collection in collections %}
+        <tr>
+          <td>{{ collection.id_col }}</td>
+          <td>{{ collection.email }}</td>
+          <td>{{ collection.material }}</td>
+          <td>{{ "%.2f"|format(collection.weight) }} kg</td>
+          <td title="{{ collection.received }}" data-dateformatter="true">{{ collection.received }}</td>
+          <td class="big-td" >{{ collection.description }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

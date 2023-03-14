@@ -1,0 +1,79 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<section class="flex-center">
+  <h1>My history</h1>
+
+  {% if sum_month.total_price %}
+
+  <h3>Amount of month {{sum_month.curr_month}}:</h3>
+  <p>{{ "%.2f"|format(sum_month.total_price) }} Kč</p>
+  {% else %}
+
+  <h3 >Amount of month:</h3>
+  <p > 0 Kč </p>
+
+  {% endif %}
+  <br>
+  <div class="responsive-table only-desktop">
+    <table>
+      <thead>
+        <tr>
+          <th>Material</th>
+          <th>Total Sum</th>
+          <th> Weight</th>
+          <th class="column-right-align"> Date of collect </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for collect in collections %}
+        <tr>
+          <td>{{ collect.name }}</td>
+          <td>{{ "%.2f"|format(collect.total_price) }} Kč</td>
+          <td>{{ "%.2f"|format(collect.weight) }} Kg</td>
+          <td class="column-right-align" title="{{ collect.received }}" data-dateformatter="true">{{ collect.received }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+    <div class="responsive-table only-mobile">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+
+        </tr>
+      </thead>
+
+      <tbody class="stacked-column-left">
+        <tr>
+          <td>Material</td>
+          {% for collect in collections %}
+          <td>{{ collect.name }}</td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <td>Price</td>
+          {% for collect in collections %}
+          <td>{{ "%.2f"|format(collect.total_price) }} Kč</td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <td>Weight</td>
+          {% for collect in collections %}
+          <td>{{ "%.2f"|format(collect.weight) }} Kg</td>
+          {% endfor %}
+        </tr>
+        <tr>
+          <td>Date of collect</td>
+          {% for collect in collections %}
+          <td title="{{ collect.received }}" data-dateformatter="true">{{ collect.received }}</td>
+          {% endfor %}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

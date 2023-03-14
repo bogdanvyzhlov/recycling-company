@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+{% from 'macros/form_field.html' import render_field with context %}
+
+{% block content %}
+
+<section class="flex-center">
+  <h1>Sign In</h1>
+
+  <form method="POST">
+    {{ render_field(form.email) }}
+    {{ render_field(form.password) }}
+    <input type="submit" class="w-100" value="Sign In">
+  </form>
+
+  <p>Not registered yet? <a href="{{ url_for('auth.sign_up') }}">Create an account</a></p>
+</section>
+{% endblock %}
