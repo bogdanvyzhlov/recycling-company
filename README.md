@@ -57,6 +57,9 @@ $ flask run
 ├─ config.py          # Configuration
 └─ requirements.txt   # Required librabries
 ```
+## <p align="center">Screenshot Homepage</p>
+<p align="center"><img src="https://github.com/bogdanvyzhlov/recycling-company/blob/main/static/img/recycle2.png" alt="ER" width="600"/></p>
+
 
 ## <p align="center">Entity–relationship model</p>
 <p align="center"><img src="https://github.com/bogdanvyzhlov/recycling-company/blob/main/static/img/ERD.png" alt="ER" width="600"/></p>
